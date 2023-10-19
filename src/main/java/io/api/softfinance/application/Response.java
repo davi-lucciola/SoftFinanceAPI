@@ -1,4 +1,4 @@
-package io.api.softfinance.controllers;
+package io.api.softfinance.application;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

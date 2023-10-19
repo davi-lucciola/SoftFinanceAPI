@@ -1,8 +1,7 @@
 package io.api.softfinance.domain.services;
 
+import io.api.softfinance.domain.interfaces.ICardRepository;
 import io.api.softfinance.domain.models.Card;
-import io.api.softfinance.infra.entities.CardEntity;
-import io.api.softfinance.infra.repositories.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,24 +9,28 @@ import java.util.List;
 
 @Service
 public class CardService {
+
     @Autowired
-    private CardRepository cardRepository;
+    private ICardRepository cardRepository;
 
     public List<Card> findAll() {
-        List<CardEntity> cardEntitys = cardRepository.findAll();
-        return cardEntitys.stream().map(Card::fromEntity).toList();
+        return cardRepository.findAll();
     }
 
-    public Card save(Card card) throws Exception {
+    public Card findById(String uuid) {
+        return cardRepository.findById(uuid);
+    }
+
+    public Card create(Card card) throws Exception {
         card.validate();
-        return Card.fromEntity(cardRepository.saveAndFlush(card.toEntity()));
+        return cardRepository.save(card);
     }
 
-    //public Card update() {
+    public void delete(String uuid) throws Exception {
+        if (cardRepository.findById(uuid) == null) {
+            throw new Exception("Cartão não encontrado.");
+        }
 
-    //}
-
-    //public Card delete() {
-
-    //}
+        cardRepository.deleteById(uuid);
+    }
 }

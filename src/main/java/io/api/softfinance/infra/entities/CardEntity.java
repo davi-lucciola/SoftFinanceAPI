@@ -6,17 +6,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Calendar;
-import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "card")
+@NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "card")
 public class CardEntity {
     @Id
     @UuidGenerator

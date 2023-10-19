@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=softfinance
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+
+    networks:
+      - spring-network
+
+  app:
+    container_name: softfinance-api
+    build: .
+    volumes:
+      - .:/code
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - db
+
+networks:
+  spring-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

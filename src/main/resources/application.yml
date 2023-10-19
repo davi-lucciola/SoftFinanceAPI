@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: davilucciola
-    password: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
+    username: admin
+    password: admin
+    url: jdbc:postgresql://db:5432/softfinance
     platform: postgres
     initialization-mode: always
     continue-on-error: true
