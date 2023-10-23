@@ -14,11 +14,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgres/data
 
-    networks:
-      - spring-network
-
-  app:
-    container_name: softfinance-api
+  api:
+    container_name: softfinance_api
     build: .
     volumes:
       - .:/code
@@ -28,10 +25,6 @@ services:
 
     depends_on:
       - db
-
-networks:
-  spring-network:
-    driver: bridge
 
 volumes:
   postgres_data:
