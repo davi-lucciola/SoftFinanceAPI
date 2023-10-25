@@ -1,6 +1,6 @@
 # Multstage Build
 # First Image are to Build Image
-FROM gradle:8.2.1-jdk17 AS builder
+FROM gradle:8.2.1 AS builder
 ENV APP_HOME=/usr/app
 WORKDIR ${APP_HOME}
 COPY build.gradle settings.gradle gradlew ${APP_HOME}
