@@ -1,10 +1,20 @@
-allprojects {
-    apply plugin: 'java'
+plugins {
+    id 'java'
+}
 
-    sourceCompatibility = '17'
-    targetCompatibility = '17'
+subprojects {
+    sourceCompatibility = 17
+    targetCompatibility = 17
 
     repositories {
-        mavenCentral() // Repositório Maven Central
+        mavenCentral()
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'io.api.softfinance.SoftfinanceApplication'
+        )
     }
 }

@@ -1,4 +1,4 @@
 rootProject.name = 'softfinance'
-include 'app'
 include 'domain'
 include 'infra'
+include 'app'
