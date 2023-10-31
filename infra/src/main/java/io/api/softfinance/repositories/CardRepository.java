@@ -22,6 +22,11 @@ public class CardRepository implements ICardRepository {
         return CardConverter.convert(cardJpaDao.findById(uuid).orElse(null));
     }
 
+    @Override
+    public Card findByNumber(String number) {
+        return null;
+    }
+
     public Card save(Card card) {
         return CardConverter.convert(cardJpaDao.saveAndFlush(CardConverter.convert(card)));
     }

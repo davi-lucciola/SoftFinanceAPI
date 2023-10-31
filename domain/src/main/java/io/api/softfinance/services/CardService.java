@@ -24,6 +24,11 @@ public class CardService {
 
     public Card create(Card card) throws Exception {
         card.validate();
+
+        if (cardRepository.findByNumber(card.getNumero()) != null) {
+            throw new Exception("Esse cartão já está cadastrado.");
+        }
+
         return cardRepository.save(card);
     }
 

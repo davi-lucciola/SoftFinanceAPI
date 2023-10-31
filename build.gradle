@@ -1,20 +1,28 @@
-plugins {
-    id 'java'
-}
-
-subprojects {
-    sourceCompatibility = 17
-    targetCompatibility = 17
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
 
     repositories {
         mavenCentral()
     }
+
+    group = 'io.api.softfinance'
+    version = '1.0'
+
+    sourceCompatibility = 17
+    targetCompatibility = 17
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'io.api.softfinance.SoftfinanceApplication'
-        )
+subprojects {
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
     }
 }

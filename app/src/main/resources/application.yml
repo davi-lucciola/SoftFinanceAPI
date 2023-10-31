@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: admin
-    password: admin
-    url: jdbc:postgresql://db:5432/softfinance
+    username: davilucciola
+    password: postgres
+    url: jdbc:postgresql://127.0.0.1:5432/softfinance
     platform: postgres
     initialization-mode: always
     continue-on-error: true
@@ -11,5 +11,5 @@ spring:
     show-sql: false
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
