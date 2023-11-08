@@ -6,11 +6,9 @@ Your finance management soft and easy
 
 ## With InteliJ
 
-1. In `app/src/main/java/io/api/softfinance` run the main class `SoftfinanceApplication`
+1. In `src/main/java/io/api/softfinance` run the main class `SoftfinanceApplication`
 
-## With Docker (**NOT WORKING YET**)
-
-OBS: The Jar File are not localizing the main class (I dont know the reason yet)
+## With Docker
 
 1. Install Docker
 
