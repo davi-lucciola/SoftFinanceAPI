@@ -14,4 +14,4 @@ ENV APP_HOME=/usr/app
 WORKDIR ${APP_HOME}
 COPY --from=builder ${APP_HOME}/build .
 EXPOSE 8080
-CMD ["java", "-jar", "libs/softfinance.jar"]
+CMD ["java", "-jar", "libs/softfinance-1.0.jar"]

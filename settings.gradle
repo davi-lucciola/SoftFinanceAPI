@@ -1,4 +1,1 @@
 rootProject.name = 'softfinance'
-include 'domain'
-include 'infra'
-include 'app'
