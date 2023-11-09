@@ -1,9 +1,9 @@
 package io.api.softfinance.domain.services;
 
 
-import io.api.softfinance.domain.exceptions.DomainException;
-import io.api.softfinance.domain.exceptions.NoContentException;
-import io.api.softfinance.domain.exceptions.NotFoundException;
+import io.api.softfinance.domain.errors.DomainError;
+import io.api.softfinance.domain.errors.NoContentError;
+import io.api.softfinance.domain.errors.NotFoundError;
 import io.api.softfinance.domain.interfaces.services.ICardService;
 import io.api.softfinance.domain.interfaces.repositories.ICardRepository;
 import io.api.softfinance.domain.models.Card;
@@ -21,9 +21,9 @@ public class CardService implements ICardService {
     public List<Card> findAll() {
         List<Card> cards = cardRepository.findAll();
 
-        if (cards.isEmpty()) {
-            throw new NoContentException();
-        }
+        if (cards.isEmpty())
+            throw new NoContentError();
+
 
         return cards;
     }
@@ -31,24 +31,22 @@ public class CardService implements ICardService {
     public Card findById(String uuid) {
         Card card = cardRepository.findById(uuid);
 
-        if (card == null) {
-            throw new NotFoundException("Cartão não encontrado.");
-        }
+        if (card == null)
+            throw new NotFoundError("Cartão não encontrado.");
 
         return card;
     }
 
-    public Card create(Card card) throws DomainException {
+    public Card create(Card card) throws DomainError {
         card.validate();
 
-        if (cardRepository.findByNumber(card.getNumero()) != null) {
-            throw new DomainException("Esse cartão já está cadastrado.");
-        }
+        if (cardRepository.findByNumber(card.getNumero()) != null)
+            throw new DomainError("Esse cartão já está cadastrado.");
 
         return cardRepository.save(card);
     }
 
-    public void delete(String uuid) throws NotFoundException {
+    public void delete(String uuid) throws NotFoundError {
         findById(uuid);
         cardRepository.deleteById(uuid);
     }

@@ -8,7 +8,7 @@ spring:
     initialization-mode: always
     continue-on-error: true
   jpa:
-    show-sql: false
+    show-sql: true
     generate-ddl: true
     hibernate:
       ddl-auto: update

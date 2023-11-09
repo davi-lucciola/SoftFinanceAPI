@@ -1,15 +1,13 @@
 package io.api.softfinance.infra.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 @Entity
@@ -17,7 +15,7 @@ import java.util.Calendar;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "card")
+@Table(name = "cartoes")
 public class CardEntity {
     @Id
     @UuidGenerator
@@ -34,4 +32,14 @@ public class CardEntity {
 
     @Column(name = "data_vencimento", nullable = false)
     private Calendar dataVencimento;
+
+    @Column(nullable = false)
+    private BigDecimal limiteTotal;
+
+    @Column(nullable = false)
+    private BigDecimal limiteUtilizado;
+
+    @ManyToOne
+    @JoinColumn(name = "conta_bancaria_id", referencedColumnName = "uuid", nullable = false)
+    private BankAccountEntity contaBancaria;
 }

@@ -2,6 +2,8 @@
 
 Your finance management soft and easy
 
+This project are made for training programming skills based on **Hexagonal Architecture** and **Clean Architecture**.
+
 # How to Run Local
 
 ## With InteliJ

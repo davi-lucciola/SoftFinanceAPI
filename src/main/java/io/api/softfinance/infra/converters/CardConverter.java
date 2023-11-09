@@ -16,6 +16,8 @@ public class CardConverter {
         domain.setNomeImpresso(entity.getNomeImpresso());
         domain.setDataVencimento(entity.getDataVencimento());
         domain.setCvv(entity.getCvv());
+        domain.setLimiteTotal(entity.getLimiteTotal());
+        domain.setLimiteUtilizado(entity.getLimiteUtilizado());
 
         return domain;
     }
@@ -30,6 +32,8 @@ public class CardConverter {
         entity.setNomeImpresso(domain.getNomeImpresso());
         entity.setDataVencimento(domain.getDataVencimento());
         entity.setCvv(domain.getCvv());
+        entity.setLimiteTotal(domain.getLimiteTotal());
+        entity.setLimiteUtilizado(domain.getLimiteUtilizado());
 
         return entity;
     }
