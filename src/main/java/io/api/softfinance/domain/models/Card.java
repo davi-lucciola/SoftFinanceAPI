@@ -1,5 +1,6 @@
 package io.api.softfinance.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.api.softfinance.domain.errors.InvalidEntityError;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -19,34 +20,35 @@ import java.util.Calendar;
 public class Card {
     private String uuid;
 
-    @NotEmpty(message = "O campo \"numero\" é obrigatório.")
-    private String numero;
+    @NotEmpty(message = "O campo \"number\" é obrigatório.")
+    private String number;
 
-    @NotEmpty(message = "O campo \"nomeImpresso\" é obrigatório.")
-    private String nomeImpresso;
+    @NotEmpty(message = "O campo \"printedName\" é obrigatório.")
+    private String printedName;
 
     @NotEmpty(message = "O campo \"cvv\" é obrigatório.")
     private String cvv;
 
-    @NotNull(message = "O campo \"dataVencimento\" é obrigatório. (yyyy-MM-dd)")
+    @NotNull(message = "O campo \"dueDate\" é obrigatório. (yyyy-MM-dd)")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Calendar dataVencimento;
+    private Calendar dueDate;
 
-    @NotNull(message = "O \"limiteTotal\" é obrigatório.")
-    private BigDecimal limiteTotal;
+    @NotNull(message = "O \"totalLimit\" é obrigatório.")
+    private BigDecimal totalLimit;
 
-    private BigDecimal limiteUtilizado;
+    private BigDecimal limitUsed;
 
-    @NotNull(message = "O campo contaBancariaId é obrigatório.")
-    private String contaBancariaId;
+    @JsonIgnore
+    @NotNull(message = "O \"campo bankAccountId\" é obrigatório.")
+    private String bankAccountId;
 
-    private BankAccount contaBancaria;
+    private BankAccount bankAccount;
 
     public void validate() throws InvalidEntityError {
-        if (Calendar.getInstance().after(this.dataVencimento)) {
+        if (Calendar.getInstance().after(this.dueDate)) {
             throw new InvalidEntityError("A data de vencimento não pode ser anterior a data atual.");
         }
 
-        this.limiteUtilizado = BigDecimal.ZERO;
+        this.limitUsed = BigDecimal.ZERO;
     }
 }

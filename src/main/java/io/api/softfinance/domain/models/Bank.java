@@ -14,9 +14,12 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bank {
-
     private String uuid;
 
     @NotEmpty(message = "O campo nome é obrigatório.")
-    private String nome;
+    private String name;
+
+    public Bank(String uuid) {
+        this.uuid = uuid;
+    }
 }

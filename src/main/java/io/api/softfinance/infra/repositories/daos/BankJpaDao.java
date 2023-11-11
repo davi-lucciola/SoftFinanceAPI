@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface BankJpaDao extends JpaRepository<BankEntity, String> {
-    @Query(value = "SELECT b FROM BankEntity b WHERE b.nome LIKE ?1")
+    @Query(value = "SELECT b FROM BankEntity b WHERE b.name LIKE ?1")
     List<BankEntity> searchByName(String name);
-    Optional<BankEntity> findByNome(String name);
+    Optional<BankEntity> findByName(String name);
 }

@@ -12,12 +12,12 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "bancos")
+@Table(name = "banks")
 public class BankEntity {
     @Id
     @UuidGenerator
     private String uuid;
 
     @Column(unique = true, nullable = false)
-    private String nome;
+    private String name;
 }

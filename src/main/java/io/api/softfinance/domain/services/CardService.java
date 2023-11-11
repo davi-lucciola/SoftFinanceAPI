@@ -6,6 +6,7 @@ import io.api.softfinance.domain.errors.NoContentError;
 import io.api.softfinance.domain.errors.NotFoundError;
 import io.api.softfinance.domain.interfaces.services.ICardService;
 import io.api.softfinance.domain.interfaces.repositories.ICardRepository;
+import io.api.softfinance.domain.models.BankAccount;
 import io.api.softfinance.domain.models.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import java.util.List;
 
 @Service
 public class CardService implements ICardService {
+
+    @Autowired
+    private BankAccountService bankAccountService;
 
     @Autowired
     private ICardRepository cardRepository;
@@ -40,8 +44,11 @@ public class CardService implements ICardService {
     public Card create(Card card) throws DomainError {
         card.validate();
 
-        if (cardRepository.findByNumber(card.getNumero()) != null)
+        if (cardRepository.findByNumber(card.getNumber()) != null)
             throw new DomainError("Esse cartão já está cadastrado.");
+
+        BankAccount bankAccount = bankAccountService.findById(card.getBankAccountId());
+        card.setBankAccount(bankAccount);
 
         return cardRepository.save(card);
     }

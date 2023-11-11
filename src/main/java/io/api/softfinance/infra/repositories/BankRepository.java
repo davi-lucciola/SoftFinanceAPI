@@ -31,7 +31,7 @@ public class BankRepository implements IBankRepository {
 
     @Override
     public Bank findByName(String name) {
-        return bankJpaDao.findByNome(name).map(BankConverter::convert).orElse(null);
+        return bankJpaDao.findByName(name).map(BankConverter::convert).orElse(null);
     }
 
     @Override

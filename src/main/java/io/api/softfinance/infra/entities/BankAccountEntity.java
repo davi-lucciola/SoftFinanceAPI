@@ -16,22 +16,28 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "contas_bancarias")
+@Table(name = "bank_accounts")
 public class BankAccountEntity {
     @Id
     @UuidGenerator
     private String uuid;
 
     @Column(nullable = false)
-    private String titular;
+    private String holder;
 
     @Column(nullable = false)
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private String accountNumber;
 
-//    @ManyToOne
-//    @JoinColumn(name = "banco_id", referencedColumnName = "id")
-//    private BankEntity banco;
+    @Column(nullable = false)
+    private String agency;
 
-    @OneToMany(mappedBy = "contaBancaria")
-    private List<CardEntity> cartoes;
+    @Column(nullable = false)
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    @ManyToOne
+    @JoinColumn(name = "bankId", referencedColumnName = "uuid")
+    private BankEntity bank;
+
+    @OneToMany(mappedBy = "bankAccount")
+    private List<CardEntity> cards;
 }

@@ -25,8 +25,7 @@ public class BankService implements IBankService {
             throw new NoContentError();
 
         if (search != null) {
-            banks = banks.stream()
-                    .filter((bank) -> bank.getNome().contains(search)).toList();
+            banks = banks.stream().filter((bank) -> bank.getName().contains(search)).toList();
         }
 
         return banks;
@@ -44,7 +43,7 @@ public class BankService implements IBankService {
 
     @Override
     public Bank create(Bank bank) {
-        Bank bankInDB = bankRepository.findByName(bank.getNome());
+        Bank bankInDB = bankRepository.findByName(bank.getName());
 
         if (bankInDB != null)
             throw new DomainError("Já existe um banco cadastrado com esse nome.");

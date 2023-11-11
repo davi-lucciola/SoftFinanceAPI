@@ -22,24 +22,24 @@ public class CardEntity {
     private String uuid;
 
     @Column(nullable = false, unique = true)
-    private String numero;
+    private String number;
 
-    @Column(name = "nome_impresso", nullable = false, unique = true)
-    private String nomeImpresso;
+    @Column(name = "printedName", nullable = false, unique = true)
+    private String printedName;
 
     @Column(nullable = false)
     private String cvv;
 
-    @Column(name = "data_vencimento", nullable = false)
-    private Calendar dataVencimento;
+    @Column(name = "due_date", nullable = false)
+    private Calendar dueDate;
 
     @Column(nullable = false)
-    private BigDecimal limiteTotal;
+    private BigDecimal totalLimit;
 
     @Column(nullable = false)
-    private BigDecimal limiteUtilizado;
+    private BigDecimal limitUsed;
 
     @ManyToOne
-    @JoinColumn(name = "conta_bancaria_id", referencedColumnName = "uuid", nullable = false)
-    private BankAccountEntity contaBancaria;
+    @JoinColumn(name = "bank_account_id", referencedColumnName = "uuid", nullable = false)
+    private BankAccountEntity bankAccount;
 }

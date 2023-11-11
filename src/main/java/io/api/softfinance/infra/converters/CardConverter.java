@@ -1,6 +1,7 @@
 package io.api.softfinance.infra.converters;
 
 
+import io.api.softfinance.domain.models.BankAccount;
 import io.api.softfinance.domain.models.Card;
 import io.api.softfinance.infra.entities.CardEntity;
 
@@ -12,12 +13,13 @@ public class CardConverter {
         Card domain = new Card();
 
         domain.setUuid(entity.getUuid());
-        domain.setNumero(entity.getNumero());
-        domain.setNomeImpresso(entity.getNomeImpresso());
-        domain.setDataVencimento(entity.getDataVencimento());
+        domain.setNumber(entity.getNumber());
+        domain.setPrintedName(entity.getPrintedName());
+        domain.setDueDate(entity.getDueDate());
         domain.setCvv(entity.getCvv());
-        domain.setLimiteTotal(entity.getLimiteTotal());
-        domain.setLimiteUtilizado(entity.getLimiteUtilizado());
+        domain.setTotalLimit(entity.getTotalLimit());
+        domain.setLimitUsed(entity.getLimitUsed());
+        domain.setBankAccount(BankAccountConverter.convert(entity.getBankAccount()));
 
         return domain;
     }
@@ -28,12 +30,13 @@ public class CardConverter {
         CardEntity entity = new CardEntity();
 
         entity.setUuid(domain.getUuid());
-        entity.setNumero(domain.getNumero());
-        entity.setNomeImpresso(domain.getNomeImpresso());
-        entity.setDataVencimento(domain.getDataVencimento());
+        entity.setNumber(domain.getNumber());
+        entity.setPrintedName(domain.getPrintedName());
+        entity.setDueDate(domain.getDueDate());
         entity.setCvv(domain.getCvv());
-        entity.setLimiteTotal(domain.getLimiteTotal());
-        entity.setLimiteUtilizado(domain.getLimiteUtilizado());
+        entity.setTotalLimit(domain.getTotalLimit());
+        entity.setLimitUsed(domain.getLimitUsed());
+        entity.setBankAccount(BankAccountConverter.convert(domain.getBankAccount()));
 
         return entity;
     }
